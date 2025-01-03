@@ -1,0 +1,6 @@
+.env
+.DS_Store
+__pychace__
+/venv
+/req
+/faiss_index
