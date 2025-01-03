@@ -68,7 +68,7 @@ def main():
         page_icon="📄",
         initial_sidebar_state="expanded",
     )
-    st.title("IAI Chatbot")
+    st.title("IAI Chatbot (Pinecone)")
 
     if "chat_history" not in st.session_state:
         st.session_state["chat_history"] = []
