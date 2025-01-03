@@ -9,8 +9,8 @@ from PyPDF2 import PdfReader
 import time
 from langchain.prompts import PromptTemplate
 
-# Hardcoded API Key
-API_KEY = "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"
+# Access the API key from Streamlit secrets
+API_KEY = st.secrets["OPENAI_API_KEY"]
 
 def get_pdf_text(pdf_paths):
     text = ""

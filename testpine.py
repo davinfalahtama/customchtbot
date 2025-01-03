@@ -11,10 +11,10 @@ from langchain.prompts import PromptTemplate
 from pinecone import Pinecone as PineconeClient, ServerlessSpec
 from langchain.vectorstores import Pinecone
 
-# Hardcoded API keys
-API_KEY = "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"
-PINECONE_API_KEY = "pcsk_4nAHDn_4bPJC7GLU3uJotT5k8PCQ8rz2XyPjoTqGYxMxvyuYxBrBJWGFMnE57XPbShtSaH"
-PINECONE_ENV = "us-east-1"
+# Access the API keys from Streamlit secrets
+API_KEY = st.secrets["OPENAI_API_KEY"]
+PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
+PINECONE_ENV = st.secrets["PINECONE_ENV"]
 
 def get_pdf_text(pdf_paths):
     text = ""

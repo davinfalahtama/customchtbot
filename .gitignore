@@ -4,3 +4,4 @@ __pychace__
 /venv
 /req
 /faiss_index
+secrets.toml
