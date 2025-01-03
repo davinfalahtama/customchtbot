@@ -5,3 +5,4 @@ __pychace__
 /req
 /faiss_index
 secrets.toml
+testweb.py
