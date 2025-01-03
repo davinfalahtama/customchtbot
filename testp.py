@@ -9,8 +9,7 @@ from PyPDF2 import PdfReader
 from dotenv import load_dotenv
 import time
 from langchain.prompts import PromptTemplate
-from pinecone import Pinecone as PineconeClient, ServerlessSpec
-from langchain.vectorstores import Pinecone
+import pinecone
 
 # Load environment variables
 load_dotenv()
@@ -35,26 +34,26 @@ def get_vector_store(text_chunks):
 
     # Pinecone index setup
     index_name = "iai-chatbot"
-    pinecone_client = PineconeClient(api_key=pinecone_api_key)
+    pinecone.init(api_key=pinecone_api_key, environment=pinecone_env)
 
-    if index_name not in pinecone_client.list_indexes().names():
-        pinecone_client.create_index(
+    if index_name not in pinecone.list_indexes():
+        pinecone.create_index(
             name=index_name,
-            dimension=1536,  # Sesuaikan dengan ukuran embedding model
+            dimension=1536,  # Adjust according to embedding model size
             metric="cosine",
         )
 
-    # Hubungkan ke index yang sudah ada
-    index = pinecone_client.Index(index_name)
+    # Connect to the existing index
+    index = pinecone.Index(index_name)
 
-    # Inisialisasi vector store menggunakan LangChain Pinecone
+    # Initialize vector store using LangChain Pinecone
     vector_store = Pinecone(
         index=index,
         embedding=embeddings,
         text_key="text",
     )
 
-    # Tambahkan teks ke dalam vector store
+    # Add texts to vector store
     vector_store.add_texts(texts=text_chunks)
     return vector_store
 
@@ -73,8 +72,8 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state["chat_history"] = []
 
-    dataset_path = r"D:\\Indonesia AI\\Custom-Chabot-Indonesia-AI\\dataset"
-    pdf_docs = [os.path.join(dataset_path, filename) for filename in os.listdir(dataset_path) if filename.endswith('.pdf')]
+    dataset_path = "dataset/indonesia-ai-dataset.pdf"
+    pdf_docs = [dataset_path]
 
     with st.spinner("Memproses dokumen..."):
         start_time = time.time()
@@ -116,13 +115,13 @@ def main():
         with st.spinner("Mencari jawaban..."):
             formatted_history = format_chat_history(st.session_state["chat_history"])
             
-            # Gunakan __call__ untuk mendapatkan semua output
+            # Get all outputs using __call__
             output = qa_chain({"question": prompt, "chat_history": formatted_history})
             
-            # Ambil hanya jawaban
+            # Extract answer
             response = output["answer"]
 
-            # (Opsional) Ambil sumber dokumen jika ingin ditampilkan
+            # (Optional) Show source documents
             sources = output.get("source_documents", [])
         
         with st.chat_message("assistant"):

@@ -46,8 +46,8 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state["chat_history"] = []
 
-    dataset_path = r"D:\\Indonesia AI\\Custom-Chabot-Indonesia-AI\\dataset"
-    pdf_docs = [os.path.join(dataset_path, filename) for filename in os.listdir(dataset_path) if filename.endswith('.pdf')]
+    dataset_path = "dataset/indonesia-ai-dataset.pdf"
+    pdf_docs = [dataset_path]
 
     with st.spinner("Memproses dokumen..."):
         start_time = time.time()

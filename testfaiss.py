@@ -18,7 +18,7 @@ def get_pdf_text(pdf_paths):
         pdf_reader = PdfReader(file_path)
         for page in pdf_reader.pages:
             text += page.extract_text()
-    return text  # tabel komparasi
+    return text 
 
 def get_text_chunks(text):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
@@ -44,8 +44,8 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state["chat_history"] = []
 
-    dataset_path = r"D:\\Indonesia AI\\Custom-Chabot-Indonesia-AI\\dataset"
-    pdf_docs = [os.path.join(dataset_path, filename) for filename in os.listdir(dataset_path) if filename.endswith('.pdf')]
+    dataset_path = "dataset/indonesia-ai-dataset.pdf"
+    pdf_docs = [dataset_path]
 
     with st.spinner("Memproses dokumen..."):
         start_time = time.time()
