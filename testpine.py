@@ -12,7 +12,7 @@ from pinecone import Pinecone as PineconeClient, ServerlessSpec
 from langchain.vectorstores import Pinecone
 
 # Access the API keys from Streamlit secrets
-API_KEY = st.secrets["OPENAI_API_KEY"]
+# API_KEY = st.secrets["OPENAI_API_KEY"]
 PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
 PINECONE_ENV = st.secrets["PINECONE_ENV"]
 
