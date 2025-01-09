@@ -2,11 +2,11 @@ streamlit
 python-dotenv
 langchain
 PyPDF2
-chromaDB
 faiss-cpu
-beautifulsoup4
 langchain-community
 openai
 pinecone
 tiktoken
-pymupdf
+fastapi
+uvicorn
+python-multipart

@@ -6,3 +6,5 @@ __pychace__
 /faiss_index
 secrets.toml
 testweb.py
+/testing
+/api
