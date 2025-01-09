@@ -73,7 +73,7 @@ class ChatRequest(BaseModel):
 
 class ChatResponse(BaseModel):
     answer: str
-    source_documents: List[str] = []
+    # source_documents: List[str] = []
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat_endpoint(request: ChatRequest):
@@ -82,7 +82,8 @@ async def chat_endpoint(request: ChatRequest):
         response = output["answer"]
         sources = [doc.page_content for doc in output.get("source_documents", [])]
 
-        return ChatResponse(answer=response, source_documents=())
+        return ChatResponse(answer=response) 
+                            # source_documents=())
     except Exception as e:
         print(f"Error during chat: {e}")
         raise HTTPException(status_code=500, detail=str(e))
