@@ -13,6 +13,6 @@ ENV PINECONE_ENV ""
 ENV DATASET_PATH "dataset/indonesia-ai-dataset.pdf"
 ENV INDEX_NAME "iai-chatbot"
 
-EXPOSE 8000
+EXPOSE 8080
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
