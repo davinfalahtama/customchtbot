@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      PINECONE_API_KEY: ${PINECONE_API_KEY}
+      PINECONE_ENV: ${PINECONE_ENV}
+    volumes: # Hapus ini jika bukan untuk development, untuk produksi jangan pakai volume
+      - ./:/app
+    tty: true # penting untuk melihat output
+    stdin_open: true # penting untuk melihat output
+
+    #indexdb
+    #storage
+    #sqlite
