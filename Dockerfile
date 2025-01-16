@@ -4,14 +4,10 @@ WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install python-dotenv  # Ensure dotenv is installed
 
-COPY . .
-
-ENV OPENAI_API_KEY ""
-ENV PINECONE_API_KEY ""
-ENV PINECONE_ENV ""
-ENV DATASET_PATH "dataset/indonesia-ai-dataset.pdf"
-ENV INDEX_NAME "iai-chatbot"
+COPY . .  
+# Include the .env file and all other source files
 
 EXPOSE 8080
 
